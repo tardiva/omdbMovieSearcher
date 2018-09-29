@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <span>Movie Searcher</span>
+</mat-toolbar>
+
+<div class="container">
+<form class="ms-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input #autocomplete type="text" placeholder="Start typing movie title..." aria-label="Search" matInput formControlName="searchControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSubmit()">
+      <mat-option *ngFor="let option of options | async" [value]="option.Title">
+        {{option.Title}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<mat-list role="list">
+  <app-movie-item *ngFor="let item of movieItems" [movie]="item"></app-movie-item>
+</mat-list>
+
+<mat-paginator [length]="total"
+               [pageSize]="itemsPerPage"
+               [hidePageSize] = true
+               (page)="onPageChange($event)">
+</mat-paginator>
+</div>

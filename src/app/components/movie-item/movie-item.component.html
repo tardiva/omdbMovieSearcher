@@ -1,0 +1,25 @@
+<mat-list-item role="listitem">
+  <img matListAvatar [src]="movie.Poster != 'N/A' ? movie.Poster : defaultPoster" alt="movie poster">
+  <h3 matLine class="mat-line--wrap"> {{movie.Title}} </h3>
+  <p matLine class="mat-line--wrap">
+    <span> {{movie.Year}} </span>
+  </p>
+  <p matLine class="mat-line--wrap">
+    <span> {{movie.Plot}} </span>
+  </p>
+</mat-list-item>
+
+<!--<div class="ms-list-item" role="listitem">
+  <div class="ms-list-item__column ms-list-item__column--image">
+    <img class="ms-list-item__img" [src]="movie.Poster != 'N/A' ? movie.Poster : defaultPoster" alt="movie poster">
+  </div>
+  <div class="ms-list-item__column">
+    <h3> {{movie.Title}} </h3>
+    <p>
+      <span> {{movie.Year}} </span>
+    </p>
+    <p>
+      <span> {{movie.Plot}} </span>
+    </p>
+  </div>
+</div>-->

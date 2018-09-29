@@ -1,0 +1,28 @@
+.ms-list-item {
+  height: auto;
+  margin-bottom: 20px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+
+  &__column {
+    &--image {
+      text-align: center;
+    }
+  }
+
+  &__img {
+    width: 200px;
+  }
+}
+
+.mat-list-item {
+  .mat-list-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 0;
+  }
+}
+
+
+
