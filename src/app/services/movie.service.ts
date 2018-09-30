@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 })
 
 export class MovieService {
-  url = 'http://www.omdbapi.com/';
+  url = 'https://www.omdbapi.com/';
   key = '6e3df609';
 
   constructor(private http: HttpClient) {

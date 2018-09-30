@@ -7,7 +7,7 @@ import { Movie } from '../../models/movie';
   styleUrls: ['./movie-item.component.scss']
 })
 export class MovieItemComponent {
-  defaultPoster = '../../assets/img/no-poster.jpg';
+  defaultPoster = 'assets/img/no-poster.jpg';
 
   constructor() {  }
 
