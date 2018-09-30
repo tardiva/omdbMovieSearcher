@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs/index';
-import { map, mergeMap } from 'rxjs/operators';
+import { Movie } from '../models/movie';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable({
@@ -20,21 +21,24 @@ export class MovieService {
       .set('apikey', this.key)
       .set('s', searchString)
       .set('page', page);
-    return this.http.get<any>(this.url, {params});
-      /*.pipe(
-        map((res) => {
-            res.Search.forEach(val => val.Plot = 'test');
-            return res;
-          }
-        )
-      );*/
+    return this.http.get<any>(this.url, {params})
+      .pipe(
+        catchError((error: any) => {
+          return throwError(error);
+        })
+      );
   }
 
-  getMovie(id): Observable<any> {
+  getMovie(id): Observable<Movie> {
     const params = new HttpParams()
       .set('apikey', this.key)
       .set('i', id);
-    return this.http.get<any>(this.url, {params});
+    return this.http.get<Movie>(this.url, {params})
+      .pipe(
+        catchError((error: any) => {
+          return throwError(error);
+        })
+      );
   }
 
 }

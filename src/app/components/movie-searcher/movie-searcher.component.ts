@@ -1,12 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MovieService } from '../../services/movie.service';
 import { MatAutocompleteTrigger } from '@angular/material';
-
-import {Observable} from 'rxjs';
-import { map, startWith, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-
 import { Movie } from '../../models/movie';
+import { MovieService } from '../../services/movie.service';
+import { Observable } from 'rxjs';
+import { map, startWith, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movie-searcher',
@@ -23,16 +21,13 @@ export class MovieSearcherComponent implements OnInit {
     searchControl: ''
   });
 
-  @ViewChild('autocomplete', { read: MatAutocompleteTrigger }) autocomplete: MatAutocompleteTrigger;
-
   constructor(private fb: FormBuilder,
               private service: MovieService) {
   }
 
+  @ViewChild('autocomplete', { read: MatAutocompleteTrigger }) autocomplete: MatAutocompleteTrigger;
+
   ngOnInit() {
-    /*this.service.searchMovies('Black Cat, White Cat').subscribe(
-      (res) => console.log(res)
-    );*/
     this.options = this.form.get('searchControl').valueChanges
       .pipe(
         startWith(null),
@@ -66,7 +61,7 @@ export class MovieSearcherComponent implements OnInit {
         this.service.getMovie(movie.imdbID).subscribe((res) => {
           movie = Object.assign(movie, {Plot: res.Plot});
         });
-      })
+      });
       this.total = searchResults.totalResults;
       this.autocomplete.closePanel();
     });
