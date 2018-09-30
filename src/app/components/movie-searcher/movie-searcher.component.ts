@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatAutocompleteTrigger } from '@angular/material';
 import { Movie } from '../../models/movie';
@@ -26,6 +26,8 @@ export class MovieSearcherComponent implements OnInit {
   }
 
   @ViewChild('autocomplete', { read: MatAutocompleteTrigger }) autocomplete: MatAutocompleteTrigger;
+  @ViewChild('autocomplete') autocompleteInput: ElementRef;
+
 
   ngOnInit() {
     this.options = this.form.get('searchControl').valueChanges
@@ -47,6 +49,8 @@ export class MovieSearcherComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.autocomplete.closePanel();
+    this.autocompleteInput.nativeElement.blur();
     this.getMoviesPerPage(1);
   }
 
@@ -63,7 +67,6 @@ export class MovieSearcherComponent implements OnInit {
         });
       });
       this.total = searchResults.totalResults;
-      this.autocomplete.closePanel();
     });
   }
 }
