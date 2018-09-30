@@ -13,5 +13,4 @@ export class MovieItemComponent {
 
   @Input()
   movie: Movie;
-
 }
