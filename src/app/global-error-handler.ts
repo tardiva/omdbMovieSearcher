@@ -8,7 +8,6 @@ export class GlobalErrorHandler implements ErrorHandler {
 
   handleError(error) {
     this.notifierService.notify('error', 'Something went wrong...');
-    // IMPORTANT: Rethrow the error otherwise it gets swallowed
-    // throw error;
+    throw error;
   }
 }

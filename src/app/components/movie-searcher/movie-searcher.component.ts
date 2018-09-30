@@ -60,13 +60,17 @@ export class MovieSearcherComponent implements OnInit {
 
   getMoviesPerPage(page) {
     this.service.searchMovies(this.form.value.searchControl, page).subscribe((searchResults) => {
-      this.movieItems = searchResults.Search;
-      this.movieItems.forEach((movie) => {
-        this.service.getMovie(movie.imdbID).subscribe((res) => {
-          movie = Object.assign(movie, {Plot: res.Plot});
+      try {
+        this.movieItems = searchResults.Search;
+        this.movieItems.forEach((movie) => {
+          this.service.getMovie(movie.imdbID).subscribe((res) => {
+            movie = Object.assign(movie, {Plot: res.Plot});
+          });
         });
-      });
-      this.total = searchResults.totalResults;
+        this.total = searchResults.totalResults;
+      } catch (error) {
+        throw error;
+      }
     });
   }
 }
